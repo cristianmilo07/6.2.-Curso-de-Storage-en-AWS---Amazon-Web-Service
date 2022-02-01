@@ -67,3 +67,29 @@ Podemos activar el Object-level Logging dentro de un bucket en S3 para llevar re
 Tomando ventaja del servicio de CDN de AWS podemos cargar nuestra información de forma más rápida, esta característica no se encuentra disponible en buckets que contengan puntos (.) en su nombre.
 
 La transferencia acelerada te será sumamente útil cuando tengas que subir información a tu bucket, pero tú no te encuentres en la misma región donde creaste tu bucket.
+
+### 8. Eventos en S3
+
+Los eventos nos servirán en los casos donde queremos recibir notificaciones cuando se ejecute determinada acción dentro de un bucket con información importante.
+
+Al momento de crear un evento debemos ponerle un nombre, indicarle la acción que debe notificar, además podemos especificarle la carpeta y el tipo de archivo. Por último, debemos indicarle hacia donde debe mandar la notificación, puede ser hacia:
+
+- SNS Topic.
+- SQS Queue.
+- Lambda Function.
+
+### 9. Replicación
+La característica de replicar información se realiza solamente para buckets de una región a otra, no es posible pasar de un bucket de una misma región a otro de la misma.
+
+El proceso de replicación se realiza de forma asíncrona. Es común realizar réplicas para Data Recovery, Auditorías y Compliance.
+
+Al momento de replicar la información podemos indicarle que sean todos los objetos del bucket, los objetos que se encuentren dentro de determinada carpeta o aquellos que tengan cierto tag. Además, podemos replicar objetos encriptados.
+
+#Clases de Storage en S3
+
+### 10. S3 - Estándar
+
+s3 standard> durabilidad completamente alta,
+s3 standard acceso poco frecuente
+s3 unica zona acceso poco frecuente
+glacier el mas barato y el que guarda con mayor longevidad la info
