@@ -277,6 +277,7 @@ La principal diferencia entre el snapshot y la AMI es, por decirlo de una manera
 
 # 35. Volumen EBS para Linux
 
+
 #36. AWS Storage S3 vs EBS vs EFS, Cuándo usar cada uno
 https://www.youtube.com/watch?v=A8OcQkK9qQQ
 
