@@ -195,3 +195,90 @@ Storage Gateway es un servicio que conecta el mundo onpremise con la nube. Bási
 	-Integración: S3, EBS, Glacier.
 	-Uso: Descargar e instalar una VM, configure y puede usarla.
 	-Seguridad: Brinda todas las ventajas de seguridad y durabilidad que provee la nube de AWS.
+	
+
+# 25. File Gateway
+Es un tipo de Storage Gateway, el cual permite que aplicaciones on-premise accedan a Storage a través de SMB o NFS.
+Con File Gateway podemos empezar a pasar nuestros objetos de on-premise a S3, nuestros logs para procesamiento, y básicamente va a ser a nivel de objetos.
+Este tipo de Storage provee una opción que se llama The Cache, el cual hace un caché local de los objetos que se están transfiriendo para que puedan ser accesibles de manera frecuente mientras se va haciendo la réplica a la nube.
+
+# 26. Virtual Tape Library
+	- Reemplaza el backup en cintas aprovechando el cloud.
+	- El backup existente es generado directamente desde on-premise en virtual tape.
+
+# 27. Volume Gateway
+	-Crear caché de archivos locales. Mejora la latencia de archivos locales.
+	-Crear snapshots locales en AWS. Estos backups son cargados asíncronamente a AWS.
+
+#28 Elastic File System
+Elastic File System (EFS)
+
+Sistemas de archivos elástico.
+
+	-Pricing: El valor es por GB consumido, no por GB aprovisionado.
+	-Uso: Aumento y reducción automática de su capacidad.
+	-Funcionalidad: Concede un acceso compartido paralelo masivo a miles de instancias Amazon EC2.
+	-IOPS: Permite altos niveles de IOPS.
+	-Red: Permite mejor rendimiento de red.
+	-Funcionalidad: Permite cifrado en reposo.
+	-Compatibilidad: Sólo es compatible con sistemas operativos Linux. Usando Direct Connect, ESF puede ser utilizado desde On-Premise.
+	-Montaje: Provee un paso a paso de montaje del sistema de archivos en Linux.
+
+# 29. Casos de uso de EFS
+
+# 30. Características de Elastic Block Storage
+Elastic Block Storage es un servicio de almacenamiento basado en bloques; y al ser basado en bloques, nos va a brindar dos características que no tenemos en otros sistemas de archivos: podemos instalar sistemas operativos y podemos instalar aplicaciones. Este tipo de almacenamiento lo podemos ver como un disco duro virtual en la nube.
+
+Características
+
+Podemos adherirlo a una instancia. Sin embargo, a diferencia de EFS, en este servicio se paga por almacenamiento aprovisionado, y esto es porque como se utiliza como almacenamiento de sistemas operativos, no puede ser dinámico. Si se desea cambiar el tamaño del almacenamiento del disco, en Linux se realiza el cambio a través de la terminal; y en caso de utilizar Windows Server, se debe primero realizar el cambio en la consola de AWS y luego en la administración de discos dentro del servidor. Aunque se recomienda siempre aprovisionar desde el comienzo el tamaño de almacenamiento necesario para evitar tener que redimencionarlo, debido a que puede ser peligroso para la información.
+
+	-Replicación: Cada volumen se replica dentro de una AZ (zona de disponibilidad) para proteger ante un error.
+	-Diseño: Está diseñado para ayudar a diferentes cargas de trabajo.
+	-Montaje: Un EBS puede estar asociado sólo a una instancia EC2, y una instancia EC2 puede estar asociada a varios EBS.
+	-Boot: No se pueden encriptar y no permiten todos los tipos de EBS disponibles.
+	-Volumen adicional: Pueden encriptarse y usar todos los tipos de EBS disponibles.
+	-Montaje: Se debe hacer por la consola de AWS y a nivel de sistema operativo.
+	*-Tipos: Hay diferentes tipos de EBS.
+	-Protección: Se puede proteger el borrado accidental al crear la instancia.
+	-Límites: Pueden ser de hasta 16TB. El almacenamiento origen varía según el tipo de EBS.
+
+# 31. Tipos de EBS - GP2 - IO1
+**SSD GP2 (General purpose)**
+	-Balance entre performance y precio. 3 IOPS por cada DB hasta 10.000 IOPS. Son de uso general.
+	-Hasta 3.000 IOPS para periodos cortos debajo de 1GB. Puede ser Boot de una instancia. Entre 1GB y 16TB.
+**
+SSD IO1**
+	-Diseñados para I/O intensiva. Se usan para más de 10.000 IOPS. Hasta 20.000 IOPS por volumen.
+	-Para BD no relacionales o uso intensivo I/O. Puede ser Boot de una instancia. Entre 4GB y 16TB.
+
+# 32. Tipos de EBS - ST1 - SC1
+**HDD ST1**
+
+	-BigData, Data Warehouse, Log Process o Streaming. No pueden ser Boot de una EC2.
+	-Entre 500GB y 16TB.
+**HDD SC1**
+
+	-Volumen de menor costo para cargas de acceso con poca frecuencia. No pueden ser Boot de una EC2.
+	-Escenarios donde el costo es importante. Entre 500GB y 16TB.
+**Magnetic (standard)**
+
+	-Es el que tiene la instancia por defecto al ser encendida. No es recomendable porque no garantiza el almacenamiento de la información luego de que se reinicie o se apague.
+
+# 33. Snapshots y AMI
+
+	-Los snapshots son incrementales. Se pueden programar con el lifecycle manager.
+	-Compatibles con cualquier sistema operativo.
+**Diferencias entre Snapshots y AMIs**
+La principal diferencia entre el snapshot y la AMI es, por decirlo de una manera informal, una foto en el tiempo del servidor; en cambio la AMI la podríamos utilizar para crear una plantilla de un Sistema Operativo para después replicarla. Por ejemplo, podemos crear una AMI que por defecto ya tenga una aplicación o un stack instalado y cuando copiemos esa AMI a otra región y la despleguemos, ya sabemos que siempre va a estar esa aplicación o ese stack en las instancias que despleguemos basadas en esa AMI. En el caso del snapshot, nos desplegaría el servidor que ya hemos estado utilizando con nuestra información, y en el caso de la AMI, podríamos venderla en el AWS MarketPlace compliendo algunas normas definidas por AWS.
+
+# 34. Volumen EBS para Windows
+
+# 35. Volumen EBS para Linux
+
+#36. AWS Storage S3 vs EBS vs EFS, Cuándo usar cada uno
+https://www.youtube.com/watch?v=A8OcQkK9qQQ
+
+#37. Conclusiones
+
+
