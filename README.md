@@ -210,7 +210,8 @@ Este tipo de Storage provee una opción que se llama The Cache, el cual hace un 
 	-Crear caché de archivos locales. Mejora la latencia de archivos locales.
 	-Crear snapshots locales en AWS. Estos backups son cargados asíncronamente a AWS.
 
-#28 Elastic File System
+
+# 28 Elastic File System
 Elastic File System (EFS)
 
 Sistemas de archivos elástico.
