@@ -93,3 +93,66 @@ s3 standard> durabilidad completamente alta,
 s3 standard acceso poco frecuente
 s3 unica zona acceso poco frecuente
 glacier el mas barato y el que guarda con mayor longevidad la info
+
+# 11. S3-IA
+S3 Infrequent Access o de acceso poco frecuente está diseñado para almacenar objetos que son accedidos con menor frecuencia que S3 Estándar, su costo de almacenamiento es menor, pero el costo de solicitudes es mayor.
+
+# 12. S3-IA única zona
+Es para acceso poco frecuente, similar a S3-IA, pero con la diferencia de que solamente se encontrará en una zona de disponibilidad y tiene un costo menor en almacenamiento por GB.
+
+# 13. Glacier
+Glacier solamente será utilizado para backups y data histórica, el precio de almacenamiento por GB es sumamente menor siendo el más económico. Al ser data histórica la disponibilidad de la información es menor, siendo que pedimos la información una vez cada seis meses o cada año.
+
+# 14. Ciclo de vida
+Esta funcionalidad va a mover la información de una clase de almacenamiento a otra cada que pase cierto tiempo. No tendrá la misma frecuencia de accesibilidad un archivo de hace 1 año que uno de hace una semana, por ello el ciclo de vida nos será de utilidad para disminuir los costos de nuestros archivos.
+
+El mínimo de tiempo para pasar objetos a S3-IA es de 30 días. Asimismo, deben pasar 120 días para mover la información a Glacier.
+
+____
+Hago una observación: algo que no fue mencionado en este modulo es esto al hacer una transición de datos a Glacier:
+Cargos de solicitud de archivado de Glacier: cada objeto que pasa a la clase de almacenamiento GLACIER constituye una solicitud de archivo. Se aplica un costo para cada solicitud. Si tiene previsto pasar una cantidad grande de objetos, tenga en cuenta los costos de solicitud
+fuente: https://docs.aws.amazon.com/es_es/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html
+
+Espero pueda servirle a alguien puesto que yo me llevé un sorpresa al revisar mi factura de AWS despues de aplicar politicas de ciclo de vida en un bucket con unos cuaaantos GB de informacion. Una sopresa algo co$to$a…
+
+# 15. Estrategias de migración a la nube
+# 16. Casos de uso.
+
+### Segurida en S3
+
+# 17. Encriptación en S3 - Llaves administradas por AWS
+
+Este área es importante porque si vamos a utilizar S3 para almacenar información crítica, debemos tomar todas las medidas necesarias para que esta información quede completamente segura y salvaguardada en S3.
+
+Protección de datos mediante cifrado en S3
+
+	- Server Side Encryption: Cuando AWS provee y administra las llaves de cifrado.
+		- SSE - S3
+		- SSE - KMS
+		- SSE - l C
+Client Side Encryption: Cuando el cliente quiere hacer la encriptación de los objetos.
+SSE - S3
+
+AWS se encarga de generar las llaves de cifrado, administrarlas y almacenarlas.
+El sistema de cifrado utiliza AES-256 (Advanced Encryption Standard de 256 bits).
+Las llaves quedan almacenadas en IAM > Encryption Keys, y son agrupadas por servicios, por ejemplo: aws/ebs.
+
+¿Por qué vamos a usar este tipo en encriptación?
+
+	Porque nosotros no queremos tener cargas de administración en el tema de la creación de las llaves o rotación de las llaves.
+	Es completamente manejado por AWS, tanto la llave, como la rotación, como la encripción, como el almacenamiento de las llaves.
+
+
+# 18. Encriptación en S3 - Llaves almacenadas en AWS creadas por el Usuario.
+
+SSE - KMS (Key Management Service)
+
+Este servicio se fundamenta de la siguiente forma:
+Tenemos nuestro archivo plano, y utilizamos KMS para cifrar el archivo. La principal diferencia con el servicio anterior es que en esta ocasión nosotros vamos a crear las llaves, aunque AWS la va a almacenar.
+
+Características
+
+	-Llaves: Se crea la llave en IAM, y se debe especificar quiénes puedes administrarlas y usarlas.
+	-Integración: Se encuentra integrado con CloudTrail para auditar el uso de las llaves.
+	-Rotación: La rotación de las llaves es responsabilidad del usuario, no de AWS.
+
