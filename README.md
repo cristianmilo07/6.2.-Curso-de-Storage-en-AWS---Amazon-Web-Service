@@ -156,3 +156,42 @@ Características
 	-Integración: Se encuentra integrado con CloudTrail para auditar el uso de las llaves.
 	-Rotación: La rotación de las llaves es responsabilidad del usuario, no de AWS.
 
+# 19. Encriptación en S3 - Llaves del Usuario
+
+En esta forma de encriptación, el usuario tiene mayor participación en cuanto a la administración de las llaves.
+
+	-El usuario proporciona las llaves de cifrado y AWS administra el cifrado de los objetos. AWS no almacena las llaves, lo hace el usuario y es totalmente su responsabilidad.
+	-Para las solicitudes se deben realizar con HTTPS o serán negadas por AWS.
+	-La rotación de las llaves es responsabilidad del usuario, no de AWS.
+	
+# 20. Encriptación en S3
+Nota:
+En la nueva versión de la consola AWS, ya no se crean por IAM si no por, Key Management Service (KMS)
+
+# 21. Introducción a Políticas en S3
+
+# 22. Ejemplos de Políticas en S3
+hola, estos ejemplos son utilizes como guia.https://static.platzi.com/media/public/uploads/storage-en-aws_4d1da0f8-775e-4e1a-b99a-31345b11284b.pdf
+
+# 23. ACL en S3
+ACL en S3.
+
+ACL (Lista de control de acceso)
+Son permisos a nivel de cuentas; es decir, permitir o denegar el acceso de otras cuentas a nuestro Bucket.
+Cuando se vaya a referenciar una cuenta en la configuración, hay que tener presente que no todas las regiones admiten que se coloquen como valor un correo electrónico; en cambio, deberíamos poner el id del usuario.
+
+En lo posible y bajo ninguna circunstancia se recomienda dejar un Bucket público. Para eso ya están estas reglas y medidas de seguridad.
+
+Las ACL son un mecanismo de seguridad que se complementan de forma adecuada con las Buckets Policies. Porque con las ACL puedo definir qué cuentas pueden acceder a mi Buckets, y con las Buckets Policies puedo establecer qué puedo hacer cada usuario.
+
+# 24. Características de storage gateway
+Storage Gateway es un servicio que conecta el mundo onpremise con la nube. Básicamente es un servicio híbrido que nos va a permitir aprovechar todas las ventajas, funcionalidades y características del almacenamiento en nube para arquitecturas e infraestructuras que tengamos implementadas onpremise. Este servicio va a actuar como intermediario entre nuestro datacenter físico con la nube, y nos va a proveer esa conexión para movernos hacia la nube y también nos va a permitir aprovechar todas las ventajas que hemos visto de la nube como seguridad, durabilidad, disponibilidad, replicación y demás.
+
+**Características**
+
+	-Definición: Almacenamiento híbrido con integración onpremise optimizado para transferencia de datos.
+	-Casos de uso: Backups, archiving, disaster recovery, y cloud data processing.
+	-Protocolos: Utiliza protocolos como NFS, SMB y iSCSI.
+	-Integración: S3, EBS, Glacier.
+	-Uso: Descargar e instalar una VM, configure y puede usarla.
+	-Seguridad: Brinda todas las ventajas de seguridad y durabilidad que provee la nube de AWS.
